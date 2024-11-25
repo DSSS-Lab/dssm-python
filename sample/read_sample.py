@@ -1,7 +1,7 @@
 import signal
 
 from dssm_python.ssm import *
-from ini_ssm import *
+from sample_datastruct import *
 
 keep_running = True
 
@@ -17,13 +17,16 @@ if __name__ == "__main__":
         print("failed to initialize ssm")
         exit(1)
 
-    ssm_api = SSMBaseAPI(stream_name='intSsm', stream_id=1, data_size=ctypes.sizeof(IniSsm), data_struct=IniSsm, is_blocking=True)
+    ssm_api = SSMBaseAPI(stream_name='intSsm', stream_id=1, data_size=ctypes.sizeof(IniSsm), data_struct=IniSsm,
+                         m_property_size=ctypes.sizeof(IniSsmProperty), property_struct=IniSsmProperty , is_blocking=True)
 
     if not ssm_api.open(SSMOpenMode.SSM_READ):
         print("failed to open ssm api")
         exit(1)
 
     print(ssm_api)
+    ssm_api.get_property()
+    print(ssm_api.__m_property__)
 
     signal.signal(signal.SIGINT, signal_handler)
     print('Press Ctrl-C to stop the loop.')

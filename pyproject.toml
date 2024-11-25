@@ -4,9 +4,10 @@ build-backend = "hatchling.build"
 
 [project]
 name = "dssm_python"
-version = "0.0.2"
+version = "0.0.3"
 authors = [
   { name="Louis Schraeder", email="z524037@shibaura-it.ac.jp" },
+  { name="Hiroaki Fukuda", email="hiroaki@shibaura-it.ac.jp" },
 ]
 description = "Python interface for DSSM"
 readme = "README.md"
