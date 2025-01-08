@@ -13,6 +13,13 @@ To use the Python interface, the following library must be installed.
 pip install sysv-ipc
 ```
 
+Using Pip:
+```bash
+sudo apt install python3-pip python3-setuptools python3-venv python3-wheel
+pip install --upgrade setuptools wheel build hatchling
+pip install -i https://test.pypi.org/simple/ dssm-python
+```
+
 ## Dataclass
 The Python interface makes it possible to exchange data between different processes, both in Python and in C.
 To define which data is exchanged, the dataclass must first be defined. An example can be found in the ```/sample``` folder.
