@@ -17,7 +17,7 @@ if __name__ == "__main__":
         print("failed to initialize ssm")
         exit(1)
 
-    ssm_api = SSMBaseAPI(stream_name='intSsm', stream_id=1, data_size=ctypes.sizeof(SampleSsm),
+    ssm_api = SSMBaseAPI(stream_name='sample', stream_id=2, data_size=ctypes.sizeof(SampleSsm),
                          m_property_size=ctypes.sizeof(SampleSsmProperty), m_property=SampleSsmProperty)
 
     if not ssm_api.create(5.0, 1.0):
