@@ -23,11 +23,12 @@ class SampleSsm(ctypes.Structure):
 class SampleSsmProperty(ctypes.Structure):
     _fields_ = [
         ("property", ctypes.c_int),
+        ("dval", ctypes.c_double),
         ("property_text", ctypes.c_char * 256),
     ]
 
     def __repr__(self):
-        return f"IniSsmProperty(property={self.property}, property_text={self.property_text})"
+        return f"IniSsmProperty(property={self.property}, dval={self.dval}, property_text={self.property_text})"
 
 
 class IniSsm(ctypes.Structure):

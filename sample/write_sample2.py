@@ -17,14 +17,14 @@ if __name__ == "__main__":
         print("failed to initialize ssm")
         exit(1)
 
-    ssm_api = SSMBaseAPI(stream_name='intSsm', stream_id=1, data_size=ctypes.sizeof(IniSsm),
-                         m_property_size=ctypes.sizeof(IniSsmProperty), m_property=IniSsmProperty)
+    ssm_api = SSMBaseAPI(stream_name='intSsm', stream_id=1, data_size=ctypes.sizeof(SampleSsm),
+                         m_property_size=ctypes.sizeof(SampleSsmProperty), m_property=SampleSsmProperty)
 
     if not ssm_api.create(5.0, 1.0):
         print("failed to create ssm api")
         exit(1)
 
-    property_ssm = IniSsmProperty(5)
+    property_ssm = SampleSsmProperty(5, 2.2, 'test Property'.encode("utf-8"))
     ssm_api.__m_property__ = property_ssm
     ssm_api.set_property()
 
@@ -34,7 +34,11 @@ if __name__ == "__main__":
     i = 1
     while keep_running:
         # for the sample_datastruct
-        data = IniSsm(i)
+        arr = [i+1, i+2, i+3, i+4, i+5]
+        data = SampleSsm(i, i-1, 2.0, (ctypes.c_int * 5) (*arr) )
+        data.array2d[0][1] = 5
+        data.array2d[1][3] = 5
+        data.array2d[2][0] = 5
 
         ssm_api.__data__ = data
         if ssm_api.write():
